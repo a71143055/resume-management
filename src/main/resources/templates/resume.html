@@ -16,7 +16,9 @@
 
     <label>Email</label>
     <label>
-      <input type="text" th:value="${resume.user != null ? resume.user.email : ''}" readonly />
+      <input type="text"
+             th:value="${resume != null && resume.user != null ? resume.user.email : ''}"
+             readonly />
     </label>
 
     <label>Phone</label>

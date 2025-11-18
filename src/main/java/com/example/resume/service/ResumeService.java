@@ -1,9 +1,9 @@
 package com.example.resume.service;
 
 import com.example.resume.model.Resume;
-import com.example.resume.model.User;
 import com.example.resume.repository.ResumeRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
 @Service
@@ -18,7 +18,7 @@ public class ResumeService {
         resumeRepository.save(resume);
     }
 
-    public Optional<Resume> findByUser(User user) {
-        return resumeRepository.findByUser(user);
+    public Optional<Resume> findByUsernameWithUser(String username) {
+        return resumeRepository.findByUsernameWithUser(username);
     }
 }

@@ -4,6 +4,7 @@ import com.example.resume.model.User;
 import com.example.resume.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
 @Service

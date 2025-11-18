@@ -7,6 +7,7 @@ import com.example.resume.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.security.Principal;
 
 @Controller
@@ -22,8 +23,10 @@ public class ResumeController {
 
     @GetMapping
     public String showResume(Model model, Principal principal) {
-        User user = userService.findByUsername(principal.getName()).orElseThrow();
-        Resume resume = resumeService.findByUser(user).orElse(new Resume());
+        String username = principal.getName();
+
+        Resume resume = resumeService.findByUsernameWithUser(username).orElseGet(Resume::new);
+
         model.addAttribute("resume", resume);
         return "resume";
     }
