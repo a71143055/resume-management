@@ -23,10 +23,8 @@ public class ResumeController {
 
     @GetMapping
     public String showResume(Model model, Principal principal) {
-        String username = principal.getName();
-
-        Resume resume = resumeService.findByUsernameWithUser(username).orElseGet(Resume::new);
-
+        User user = userService.findByUsername(principal.getName()).orElseThrow();
+        Resume resume = resumeService.findByUser(user).orElse(new Resume());
         model.addAttribute("resume", resume);
         return "resume";
     }
@@ -34,7 +32,7 @@ public class ResumeController {
     @PostMapping
     public String updateResume(@ModelAttribute Resume resume, Principal principal) {
         User user = userService.findByUsername(principal.getName()).orElseThrow();
-        resume.setUser(user);
+        resume.setUser(user); // ✅ 반드시 연결
         resumeService.save(resume);
         return "redirect:/resume";
     }
