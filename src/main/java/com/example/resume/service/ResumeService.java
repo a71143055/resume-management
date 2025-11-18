@@ -14,8 +14,8 @@ public class ResumeService {
         this.resumeRepository = resumeRepository;
     }
 
-    public Resume save(Resume resume) {
-        return resumeRepository.save(resume);
+    public void save(Resume resume) {
+        resumeRepository.save(resume);
     }
 
     public Optional<Resume> findByUser(User user) {
